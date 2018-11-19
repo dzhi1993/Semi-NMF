@@ -1,7 +1,3 @@
-# NMF by alternative non-negative least squares using projected gradients
-# Author: Chih-Jen Lin, National Taiwan University
-# Python/numpy translation: Anthony Di Franco
-
 from numpy import *
 from numpy.linalg import norm
 from time import time

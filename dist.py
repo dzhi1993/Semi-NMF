@@ -1,5 +1,3 @@
-# Authors: Christian Thurau
-# License: BSD 3 Clause
 """
 PyMF several distance functions
 
