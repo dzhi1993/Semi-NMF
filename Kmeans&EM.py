@@ -1,15 +1,25 @@
-# -*- coding: utf-8 -*-
-
 import numpy as np
 import math
 import copy
 import matplotlib.pyplot as plt
+import scipy.io as spio
 
 isdebug = True
 
+global Mu
+global Expectations
 
-# 参考文献：机器学习TomM.Mitchell P.137
-# 代码参考http://blog.csdn.net/chasdmeng/article/details/38709063
+Mu = np.random.random(2)
+Expectations = np.zeros((400, 2))
+
+
+# Load data from .mat file as array-like data
+def loaddata(filename):
+    mat = spio.loadmat(filename)
+    pointdata = mat['Y']
+    print(pointdata.shape)
+    return pointdata
+
 
 # 指定k个高斯分布参数，这里指定k=2。注意2个高斯分布具有相同均方差Sigma，均值分别为Mu1,Mu2。
 def init_data(Sigma, Mu1, Mu2, k, N):
@@ -65,19 +75,21 @@ def m_step(k, N):
 
 
 # 算法迭代iter_num次，或达到精度Epsilon停止迭代
-def run(Sigma, Mu1, Mu2, k, N, iter_num, Epsilon):
+def run(Sigma, Mu1, Mu2, k, iter_num, Epsilon):
     init_data(Sigma, Mu1, Mu2, k, N)
     print("初始<u1,u2>:", Mu)
     for i in range(iter_num):
         Old_Mu = copy.deepcopy(Mu)
-        e_step(Sigma, k, N)
-        m_step(k, N)
+        e_step(Sigma, 2, 400)
+        m_step(2, 400)
         print(i, Mu)
         if sum(abs(Mu - Old_Mu)) < Epsilon:
             break
 
 
 if __name__ == '__main__':
+    datapoint = loaddata('mixtureData.mat')
+    Mu = np.random.random(2)
     sigma = 6  # 高斯分布具有相同的方差
     mu1 = 40  # 第一个高斯分布的均值 用于产生样本
     mu2 = 20  # 第二个高斯分布的均值 用于产生样本
@@ -85,7 +97,7 @@ if __name__ == '__main__':
     N = 1000  # 样本个数
     iter_num = 1000  # 最大迭代次数
     epsilon = 0.0001  # 当两次误差小于这个时退出
-    run(sigma, mu1, mu2, k, N, iter_num, epsilon)
+    run(sigma, iter_num, epsilon)
 
     plt.hist(X[0, :], 50)
     plt.show()
