@@ -21,11 +21,15 @@ def debug(*args, **kwargs):
         print(*args, **kwargs)
 
 
-# -------------------------------------------
-# 第 k 个模型的高斯分布密度函数
-# 每 i 行表示第 i 个样本在各模型中的出现概率
-# 返回一维列表
-# -------------------------------------------
+# -------------------------------------------------------------------
+# Calculate the normal of probability of Xn given mu and covariance
+# for the kth model using function 'multivariate_normal', this
+# function is similar to 'mvnpdf' in MATLAB
+# Input: Y - data points
+#        mu_k - the mu array of k models
+#        cov_k - the covariance of k models
+# Return: norm.pdf(Y) (1-D array)
+# -------------------------------------------------------------------
 def phi(Y, mu_k, cov_k):
     norm = multivariate_normal(mean=mu_k, cov=cov_k)
     return norm.pdf(Y)
@@ -38,75 +42,81 @@ def phi(Y, mu_k, cov_k):
 #                   cov - the covariance
 #                   pi - cluster probability distribution of each point
 # Return: gamma - the probability of data sample is from the k clusters
+#         loglikelihood - the loglikelihood of current iteration
 # ---------------------------------------------------------------------------------
-def getExpectation(Y, mu, cov, pi):
+def Expectation(Y, mu, cov, pi):
     # number of samples (data points)
     N = Y.shape[0]
     # number of models (clusters)
     K = pi.shape[0]
+    loglikelihood = 0
 
     # The number of samples and mixture model are restricted equal to 1 to avoid different return types
-    assert N > 1, "There must be more than one sample!"
-    assert K > 1, "There must be more than one gaussian model!"
+    assert N > 1, "There should be more than one data sample"
+    assert K > 1, "There should be more than one gaussian mixture model"
 
     # Initialize gamma, size of (400, k)
     gamma = np.mat(np.zeros((N, K)))
 
-    # 计算各模型中所有样本出现的概率，行对应样本，列对应模型
+    # Calculate the probability of occurrence of all samples in each model,
+    # row corresponding samples, column corresponding models
     prob = np.zeros((N, K))
     for k in range(K):
         prob[:, k] = phi(Y, mu[k], cov[k])
     prob = np.mat(prob)
 
-    # 计算每个模型对每个样本的响应度
+    # Calculate the gamma of each model to each sample
     for k in range(K):
         gamma[:, k] = pi[k] * prob[:, k]
+
+    # --------------------------------------------------------
+    # Compute the log likelihood in current E-step iteration
+    # --------------------------------------------------------
     for i in range(N):
+        sum1data = np.log(np.sum(gamma[i, :]))
+        loglikelihood += sum1data
         gamma[i, :] /= np.sum(gamma[i, :])
-    return gamma
+
+    return gamma, loglikelihood
 
 
-#########################################################################
-# M 步：iteration computation of the probability distribution
-#       to maximize the expectation
-# Y 为样本矩阵，gamma 为响应度矩阵
-#########################################################################
-def maximize(Y, gamma):
-    # 样本数和特征数
+# -----------------------------------------------------------------------
+# M - Step：iteration computation of the probability distribution
+#           to maximize the expectation
+# Input parameters: Y - input data points matrix
+#                   gamma - the result from E-step
+# Return: new mu, covariance, and probability distribution pi
+# -----------------------------------------------------------------------
+def maximization(Y, gamma):
+    # get shape of input data matrix, k for initialization
     N, D = Y.shape
-    # 模型数
     K = gamma.shape[1]
-
-    #初始化参数值
     mu = np.zeros((K, D))
     cov = []
     pi = np.zeros(K)
 
-    # 更新每个模型的参数
+    # Update mu, cov, and pi for each of the models (clusters)
     for k in range(K):
-        # 第 k 个模型对所有样本的响应度之和
         Nk = np.sum(gamma[:, k])
-        # 更新 mu
-        # 对每个特征求均值
+        # update mu, get the mean of each of the column
         for d in range(D):
             mu[k, d] = np.sum(np.multiply(gamma[:, k], Y[:, d])) / Nk
-        # 更新 cov
+        # updata covariance
         cov_k = np.mat(np.zeros((D, D)))
         for i in range(N):
             cov_k += gamma[i, k] * (Y[i] - mu[k]).T * (Y[i] - mu[k]) / Nk
         cov.append(cov_k)
-        # 更新 pi
+        # update pi
         pi[k] = Nk / N
     cov = np.array(cov)
     return mu, cov, pi
 
 
-######################################################
+# ---------------------------------------------
 # Data pre-processing
 # Scaling all point data within [0, 1]
-######################################################
+# ---------------------------------------------
 def scale_data(Y):
-    # 对每一维特征分别进行缩放
     for i in range(Y.shape[1]):
         max_ = Y[:, i].max()
         min_ = Y[:, i].min()
@@ -115,14 +125,14 @@ def scale_data(Y):
     return Y
 
 
-#################################################################
+# ---------------------------------------------------------------------
 # Initialization the parameters of mixture model
 # Input parameters: shape - the shape of data points (400, 2)
 #                   K - the number of models (clusters)
 # Return: mu - randomly generate, size of (k, 2)
 #         covariance - k covariance matrices - identity
 #         pi - the initial probability distribution - 1/k
-#################################################################
+# ---------------------------------------------------------------------
 def init_params(shape, k):
     N, D = shape
     mu = np.random.rand(k, D)
@@ -133,26 +143,29 @@ def init_params(shape, k):
     return mu, cov, pi
 
 
-######################################################
-# 高斯混合模型 EM 算法
-# 给定样本矩阵 Y，计算模型参数
-# K 为模型个数
-# times 为迭代次数
-######################################################
-def GMM_EM(datapoint, k, times):
+# ------------------------------------------------------------------
+# The main entry of the EM algorithm for mixture model
+# Input: Y - the matrix of data input
+#        k - the number of gaussian model (clusters)
+#        time - the number of iteration
+# Return: the final mu, cov, pi, and the array of loglikelihood
+# ------------------------------------------------------------------
+def MM_EM(datapoint, k, times):
     datapoint = scale_data(datapoint)
     mu, cov, pi = init_params(datapoint.shape, k)
+    likelihoodarray = []
     for i in range(times):
-        gamma = getExpectation(datapoint, mu, cov, pi)
-        mu, cov, pi = maximize(datapoint, gamma)
+        gamma, loglikelihood = Expectation(datapoint, mu, cov, pi)
+        mu, cov, pi = maximization(datapoint, gamma)
+        likelihoodarray.append(loglikelihood)
+
     debug("{sep} Result {sep}".format(sep="-" * 20))
     debug("mu:", mu, "cov:", cov, "pi:", pi, sep="\n")
-    return mu, cov, pi
+    return mu, cov, pi, likelihoodarray
 
 
 if __name__ == "__main__":
-    # debugging mode flag
-    DEBUG = True
+    DEBUG = True  # debugging mode flag
 
     # Load data from .mat file as array-like data
     mat = spio.loadmat("mixtureData.mat")
@@ -160,27 +173,30 @@ if __name__ == "__main__":
     print(Y.shape)
     matY = np.matrix(Y, copy=True)
 
-    # the number of clusters
-    K = 3
+    # the main entry of EM algorithm for mixture model, to change the k
+    mu, cov, pi, loglikelihoods = MM_EM(matY, 3, 100)
 
-    # 计算 GMM 模型参数
-    mu, cov, pi = GMM_EM(matY, K, 100)
-
-    # 根据 GMM 模型，对样本数据进行聚类，一个模型对应一个类别
+    # get the final gamma for clustering
     N = Y.shape[0]
-    # 求当前模型参数下，各模型对样本的响应度矩阵
-    gamma = getExpectation(matY, mu, cov, pi)
-    # 对每个样本，求响应度最大的模型下标，作为其类别标识
+    gamma, likelihood = Expectation(matY, mu, cov, pi)
     category = gamma.argmax(axis=1).flatten().tolist()[0]
-    # 将每个样本放入对应类别的列表中
+    # Separating all data point into k clusters and store them
     class1 = np.array([Y[i] for i in range(N) if category[i] == 0])
     class2 = np.array([Y[i] for i in range(N) if category[i] == 1])
     class3 = np.array([Y[i] for i in range(N) if category[i] == 2])
 
-    # 绘制聚类结果
+    # Plot results
+    plt.figure()
+    #plt.subplot(1, 2, 1)
     plt.plot(class1[:, 0], class1[:, 1], 'rs')
     plt.plot(class2[:, 0], class2[:, 1], 'bo')
     plt.plot(class3[:, 0], class3[:, 1], 'go')
     plt.legend(loc="best")
     plt.title("Mixture Model Clustering By EM Algorithm")
+    plt.show()
+
+    plt.figure()
+    #plt.subplot(1, 2, 2)
+    plt.plot(loglikelihoods)
+    plt.title("Log likelihood")
     plt.show()
