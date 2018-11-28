@@ -9,7 +9,7 @@ import scipy.io as spio
 import numpy as np
 from scipy.stats import multivariate_normal
 
-DEBUG = True # global debugging flag
+DEBUG = True  # global debugging flag
 
 
 # -------------------------------
@@ -31,14 +31,14 @@ def phi(Y, mu_k, cov_k):
     return norm.pdf(Y)
 
 
-#########################################################################
+# ---------------------------------------------------------------------------------
 # E - Step：Calculate the expectation of each of the model
 # Input Parameters: Y - the matrix of data points with shape (400, 1)
 #                   mu - the mean of each clusters
 #                   cov - the covariance
 #                   pi - cluster probability distribution of each point
 # Return: gamma - the probability of data sample is from the k clusters
-#########################################################################
+# ---------------------------------------------------------------------------------
 def getExpectation(Y, mu, cov, pi):
     # number of samples (data points)
     N = Y.shape[0]
@@ -66,10 +66,11 @@ def getExpectation(Y, mu, cov, pi):
     return gamma
 
 
-######################################################
-# M 步：迭代模型参数
+#########################################################################
+# M 步：iteration computation of the probability distribution
+#       to maximize the expectation
 # Y 为样本矩阵，gamma 为响应度矩阵
-######################################################
+#########################################################################
 def maximize(Y, gamma):
     # 样本数和特征数
     N, D = Y.shape
@@ -101,8 +102,8 @@ def maximize(Y, gamma):
 
 
 ######################################################
-# 数据预处理
-# 将所有数据都缩放到 0 和 1 之间
+# Data pre-processing
+# Scaling all point data within [0, 1]
 ######################################################
 def scale_data(Y):
     # 对每一维特征分别进行缩放
