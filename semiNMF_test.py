@@ -1,9 +1,9 @@
 """ The Semi Non-negative Matrix Factorization (non-GPU accelerate) """
+from numpy.testing import *
 import numpy as np
 import logging
 import logging.config
 import scipy.sparse
-from numpy.testing import *
 import scipy.io as spio
 import matplotlib.pyplot as plt
 import random
