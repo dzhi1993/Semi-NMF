@@ -30,9 +30,9 @@ def debug(*args, **kwargs):
 #        cov_k - the covariance of k models
 # Return: norm.pdf(Y) (1-D array)
 # -------------------------------------------------------------------
-def phi(Y, mu_k, cov_k):
+def phi(data, mu_k, cov_k):
     norm = multivariate_normal(mean=mu_k, cov=cov_k)
-    return norm.pdf(Y)
+    return norm.pdf(data)
 
 
 # ---------------------------------------------------------------------------------

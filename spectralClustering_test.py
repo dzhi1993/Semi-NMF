@@ -8,10 +8,9 @@ import matplotlib.pyplot as plt
 #X, y = datasets.make_blobs(n_samples=500, n_features=10, centers=5, cluster_std=[0.4, 0.3, 0.4, 0.3, 0.4], random_state=11)
 #print(X, X.shape)
 
-mat = spio.loadmat('mbeta_Cerebellum_grey_all.mat')
-betaValueStructure = mat['B']
+mat = spio.loadmat('groupData_sc1.mat')
+betaValueMatrix = mat['X_C']
 
-betaValueMatrix = betaValueStructure[1, 1]
 print(betaValueMatrix.shape)
 
 # data = np.random.rand(13, 25)

@@ -253,25 +253,6 @@ class CNMF(PyMFBase):
     H : "num bases x num_samples" matrix of coefficients
     ferr : frobenius norm (after calling .factorize())
 
-    Example
-    -------
-    Applying CNMF to some rather stupid data set:
-
-    # >>> import numpy as np
-    # >>> from cnmf import CNMF
-    # >>> data = np.array([[1.0, 0.0, 2.0], [0.0, 1.0, 1.0]])
-    # >>> cnmf_mdl = CNMF(data, num_bases=2)
-    # >>> cnmf_mdl.factorize(niter=10)
-
-    The basis vectors are now stored in cnmf_mdl.W, the coefficients in cnmf_mdl.H.
-    To compute coefficients for an existing set of basis vectors simply    copy W
-    to cnmf_mdl.W, and set compute_w to False:
-
-    >>> data = np.array([[1.5, 1.3], [1.2, 0.3]])
-    >>> W = [[1.0, 0.0], [0.0, 1.0]]
-    >>> cnmf_mdl = CNMF(data, num_bases=2)
-    >>> cnmf_mdl.W = W
-    >>> cnmf_mdl.factorize(compute_w=False, niter=1)
 
     The result is a set of coefficients acnmf_mdl.H, s.t. data = W * cnmf_mdl.H.
     """
