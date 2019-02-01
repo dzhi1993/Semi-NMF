@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2cade43-4d9b-4261-85ff-8555c9a08305" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Semi-NMF.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online_hmm/em.py" beforeDir="false" afterPath="$PROJECT_DIR$/online_hmm/em.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online_hmm/hmm.py" beforeDir="false" afterPath="$PROJECT_DIR$/online_hmm/hmm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online_hmm/kmeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/online_hmm/kmeans.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HMM clustering/hmm.py" beforeDir="false" afterPath="$PROJECT_DIR$/HMM clustering/hmm.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +17,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Semi_NMF$kmeans_clustering.coverage" NAME="kmeans_clustering Coverage Results" MODIFIED="1543434398557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Semi_NMF$kmeans_clustering.coverage" NAME="kmeans_clustering Coverage Results" MODIFIED="1549035745764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/EM&amp;K-means clustering" />
     <SUITE FILE_PATH="coverage/Semi_NMF$pytest_in_semiNMF_test_py.coverage" NAME="pytest in semiNMF_test.py Coverage Results" MODIFIED="1543589845387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Semi_NMF$EM_clustering.coverage" NAME="EM_clustering Coverage Results" MODIFIED="1548973403070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/EM&amp;K-means clustering" />
     <SUITE FILE_PATH="coverage/Semi_NMF$NMF.coverage" NAME="NMF Coverage Results" MODIFIED="1543589780632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Semi_NMF$hmm.coverage" NAME="hmm Coverage Results" MODIFIED="1549035656998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HMM clustering" />
     <SUITE FILE_PATH="coverage/Semi_NMF$spectralClustering_test.coverage" NAME="spectralClustering_test Coverage Results" MODIFIED="1546536997440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Semi_NMF$Kmeans_EM.coverage" NAME="Kmeans&amp;EM Coverage Results" MODIFIED="1546537749859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/EM&amp;K-means clustering" />
     <SUITE FILE_PATH="coverage/Semi_NMF$Doctests_in_cnmf_test.coverage" NAME="Doctests in cnmf_test Coverage Results" MODIFIED="1543535687275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -31,31 +34,35 @@
           <entry key="project.open.time.0" value="6" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="csv" value="1" />
-          <entry key="py" value="16" />
+          <entry key="png" value="1" />
+          <entry key="py" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="16" />
+          <entry key="Python" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2227" />
+          <entry key="Python Console" value="18" />
+          <entry key="py" value="2290" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2227" />
+          <entry key="Python" value="2308" />
         </counts>
       </usages-collector>
     </session>
@@ -63,22 +70,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/semiNMF_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6460">
-              <caret line="388" selection-start-line="388" selection-end-line="388" />
-              <folding>
-                <element signature="e#72#99#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cnmf clustering/cnmf_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6222">
-              <caret line="374" selection-start-line="374" selection-end-line="374" />
+            <state relative-caret-position="351">
+              <caret line="359" column="56" selection-start-line="359" selection-start-column="56" selection-end-line="359" selection-end-column="56" />
               <folding>
                 <element signature="e#79#106#0" expanded="true" />
               </folding>
@@ -110,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/Kmeans&amp;EM.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="476">
               <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
               <folding>
                 <element signature="e#326#344#0" expanded="true" />
@@ -119,13 +114,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/EM_clustering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="183" column="67" lean-forward="true" selection-start-line="183" selection-start-column="67" selection-end-line="183" selection-end-column="67" />
+            <state relative-caret-position="459">
+              <caret line="183" column="67" selection-start-line="183" selection-start-column="67" selection-end-line="183" selection-end-column="67" />
               <folding>
                 <element signature="e#275#306#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HMM clustering/hmm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="377" lean-forward="true" selection-start-line="377" selection-end-line="377" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/kmeans_clustering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="391">
+              <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -174,6 +181,7 @@
     <findStrings>
       <find>getExpectation</find>
       <find>init_params</find>
+      <find>alpha_beta</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -190,6 +198,8 @@
         <option value="$PROJECT_DIR$/EM&amp;K-means clustering/Kmeans&amp;EM.py" />
         <option value="$PROJECT_DIR$/EM&amp;K-means clustering/HMM_clustering.py" />
         <option value="$PROJECT_DIR$/EM&amp;K-means clustering/EM_clustering.py" />
+        <option value="$PROJECT_DIR$/HMM clustering/hmm.py" />
+        <option value="$PROJECT_DIR$/EM&amp;K-means clustering/kmeans_clustering.py" />
       </list>
     </option>
   </component>
@@ -229,6 +239,11 @@
               <item name="Semi-NMF" type="462c0819:PsiDirectoryNode" />
               <item name="EM&amp;K-means clustering" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Semi-NMF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Semi-NMF" type="462c0819:PsiDirectoryNode" />
+              <item name="HMM clustering" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -254,7 +269,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.EM_clustering">
+  <component name="RunManager" selected="Python.kmeans_clustering">
     <configuration name="EM_clustering" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Semi-NMF" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -299,7 +314,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NMF" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="hmm" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Semi-NMF" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -307,12 +322,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HMM clustering" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NMF.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HMM clustering/hmm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="kmeans_clustering" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Semi-NMF" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/EM&amp;K-means clustering" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EM&amp;K-means clustering/kmeans_clustering.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -343,36 +380,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in semiNMF_test.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Semi-NMF" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/semiNMF_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python tests.pytest in semiNMF_test.py" />
-      <item itemvalue="Python.NMF" />
       <item itemvalue="Python.spectralClustering_test" />
       <item itemvalue="Python.Kmeans&amp;EM" />
       <item itemvalue="Python.EM_clustering" />
+      <item itemvalue="Python.hmm" />
+      <item itemvalue="Python.kmeans_clustering" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.kmeans_clustering" />
+        <item itemvalue="Python.hmm" />
         <item itemvalue="Python.EM_clustering" />
         <item itemvalue="Python.Kmeans&amp;EM" />
         <item itemvalue="Python.spectralClustering_test" />
-        <item itemvalue="Python tests.pytest in semiNMF_test.py" />
-        <item itemvalue="Python.NMF" />
       </list>
     </recent_temporary>
   </component>
@@ -402,13 +423,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15724947" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15884861" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.26180258" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26180258" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39914164" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -417,12 +439,12 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32939914" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32939914" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.25906184" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.26865673" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -455,16 +477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cnmf clustering/cnmf_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6222">
-          <caret line="374" selection-start-line="374" selection-end-line="374" />
-          <folding>
-            <element signature="e#79#106#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Semi_NMF.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -482,26 +494,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/kmeans_clustering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clustering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/Kmeans&amp;EM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="476">
           <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding>
             <element signature="e#326#344#0" expanded="true" />
@@ -516,12 +511,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/clustering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cnmf clustering/cnmf_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="359" column="56" selection-start-line="359" selection-start-column="56" selection-end-line="359" selection-end-column="56" />
+          <folding>
+            <element signature="e#79#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/kmeans_clustering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/EM&amp;K-means clustering/EM_clustering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="183" column="67" lean-forward="true" selection-start-line="183" selection-start-column="67" selection-end-line="183" selection-end-column="67" />
+        <state relative-caret-position="459">
+          <caret line="183" column="67" selection-start-line="183" selection-start-column="67" selection-end-line="183" selection-end-column="67" />
           <folding>
             <element signature="e#275#306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HMM clustering/hmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="377" lean-forward="true" selection-start-line="377" selection-end-line="377" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

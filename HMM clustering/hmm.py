@@ -12,6 +12,7 @@ import scipy.io as spio
 
 from IPython.core.debugger import Tracer
 
+
 def alpha_beta(X, pi, A, obs_distr):
     '''A[i,j] = p(z_{t+1} = j | z_t = i)'''
     T = X.shape[0]
@@ -68,16 +69,19 @@ def viterbi(X, pi, A, obs_distr, use_distance=False):
 
     return np.array(list(reversed(seq)), dtype=int), lgamma
 
+
 def smoothing(lalpha, lbeta):
     '''Computes all the p(q_t | u_1, ..., u_T)'''
     log_p = lalpha + lbeta
     return log_p - np.logaddexp.reduce(log_p, axis=1)[:,nax]
+
 
 def mpm_sequence(X, pi, A, obs_distr):
     # sequence of maximum posterior marginal (smoothing)
     lalpha, lbeta = alpha_beta(X, pi, A, obs_distr)
     tau = np.exp(smoothing(lalpha, lbeta))
     return np.argmax(tau, axis=1)
+
 
 def pairwise_smoothing(X, lalpha, lbeta, A, obs_distr):
     '''returns log_p[t,i,j] = log p(q_t = i, q_{t+1} = j|u)'''
@@ -102,7 +106,7 @@ def log_likelihood(lalpha, lbeta):
     return np.logaddexp.reduce(lalpha[T-1,:] + lbeta[T-1,:])
 
 
-def em_hmm(X, pi, init_obs_distr, n_iter=10, Xtest=None):
+def em_hmm(X, pi, init_obs_distr, n_iter=10, Xtest = None):
     pi = pi.copy()
     obs_distr = copy.deepcopy(init_obs_distr)
     T = X.shape[0]
@@ -142,6 +146,7 @@ def em_hmm(X, pi, init_obs_distr, n_iter=10, Xtest=None):
 
     return tau, A, obs_distr, pi, ll_train, ll_test
 
+
 def map_em_hmm(X, init_obs_distr, n_iter=10):
     ''' Same as EM for the HMM, but the E-step is replaced by the
     current MAP estimate of the hidden chain (given by Viterbi).
@@ -170,6 +175,7 @@ def map_em_hmm(X, init_obs_distr, n_iter=10):
                 obs_distr[k].max_likelihood(X, seq == k)
 
     return seq, obs_distr, energies
+
 
 def online_opt_hmm(X, lambda1, lambda2, init_obs_distr=None, dist_cls=distributions.SquareDistance):
     if init_obs_distr is None:
@@ -205,6 +211,7 @@ def online_opt_hmm(X, lambda1, lambda2, init_obs_distr=None, dist_cls=distributi
             cost += lambda1 + lambda2
 
     return seq, obs_distr, cost
+
 
 def online_em_hmm(X, init_pi, init_obs_distr, t_min=100, step=None, m_step_delta=1, Xtest=None, monitor=None):
     pi = init_pi.copy()
@@ -346,6 +353,7 @@ def incremental_em_hmm(X, init_pi, init_obs_distr, t_min=100, step=None, m_step_
 
     return seq, tau, A, obs_distr, ll_test, monitor_vals
 
+
 def incremental_em_hmm_add(X, lmbda, alpha=1.5, Kmax=30, init_pi=None, init_obs_distr=None,
                            dist_cls=distributions.KL, dist_params=None,
                            t_min=100, step=None, Xtest=None, monitor=None):
@@ -467,7 +475,6 @@ if __name__ == '__main__':
     mat = spio.loadmat("HMMdata.mat")
     X = mat['X']
     print(X.shape)
-    #X = np.matrix(matX, copy=True)
 
     # X = np.loadtxt('EMGaussian.data')
     # Xtest = np.loadtxt('EMGaussian.test')
@@ -498,7 +505,7 @@ if __name__ == '__main__':
     # plot_traj(p)
 
     # EM for the HMM
-    tau, A, obs_distr, pi, ll_train, ll_test = em_hmm(X, pi, obs_distr, Xtest=Xtest)
+    tau, A, obs_distr, pi, ll_train, ll_test = em_hmm(X, pi, obs_distr, Xtest=None)
 
     plt.figure()
     plt.plot(ll_train, label='training')
@@ -510,16 +517,16 @@ if __name__ == '__main__':
     # print all log-likelihoods
     print('{:<14} {:>14} {:>14}'.format('', 'train', 'test'))
     print('{:<14} {:>14.3f} {:>14.3f}'.format('General GMM', gmm_ll_train[-1], gmm_ll_test[-1]))
-    print('{:<14} {:>14.3f} {:>14.3f}'.format('HMM', ll_train[-1], ll_test[-1]))
+    # print('{:<14} {:>14.3f} {:>14.3f}'.format('HMM', ll_train[-1], ll_test[-1]))
 
     # Viterbi
     seq, _ = viterbi(X, pi, A, obs_distr)
     plt.figure()
-    plt.scatter(X[:,0], X[:,1], c=seq)
-    plt.title('most likely sequence, training')
+    plt.scatter(X[:, 0], X[:, 1], c=seq)
+    plt.title('EM for HMM clustering')
     seq_test, _ = viterbi(Xtest, pi, A, obs_distr)
     plt.figure()
-    plt.scatter(Xtest[:,0], Xtest[:,1], c=seq_test)
+    plt.scatter(Xtest[:, 0], Xtest[:, 1], c=seq_test)
     plt.title('most likely sequence, test')
 
     # marginals in each state
