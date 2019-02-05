@@ -11,8 +11,8 @@ from sklearn.model_selection import train_test_split
 # X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 
 n_samples = 1500
-# X, y = datasets.make_circles(n_samples=n_samples, factor=.5, noise=.05)  # circle dataset
-X, y = datasets.make_moons(n_samples=n_samples, noise=.05)  # Moon dataset
+X, y = datasets.make_circles(n_samples=n_samples, factor=.5, noise=.05)  # circle dataset
+# X, y = datasets.make_moons(n_samples=n_samples, noise=.05)  # Moon dataset
 
 # X, y = datasets.make_blobs(n_samples=500,
 #                            n_features=10,
