@@ -20,19 +20,19 @@ def alpha_beta(X, pi, A, obs_distr):
     lalpha = np.zeros((T, K))
     lbeta = np.zeros((T, K))
     lA = np.log(A)
-    lemissions = np.zeros((T,K))
+    lemissions = np.zeros((T, K))
     for k in range(K):
-        lemissions[:,k] = obs_distr[k].log_pdf(X)
+        lemissions[:, k] = obs_distr[k].log_pdf(X)
 
-    lalpha[0,:] = np.log(pi) + lemissions[0,:]
-    for t in range(1,T):
-        a = lalpha[t-1:t,:].T + lA + lemissions[t,:]
-        lalpha[t,:] = np.logaddexp.reduce(a, axis=0)
+    lalpha[0,:] = np.log(pi) + lemissions[0, :]
+    for t in range(1, T):
+        a = lalpha[t-1:t, :].T + lA + lemissions[t, :]
+        lalpha[t, :] = np.logaddexp.reduce(a, axis=0)
 
-    lbeta[T-1,:] = np.zeros(K)
+    lbeta[T-1, :] = np.zeros(K)
     for t in reversed(range(T-1)):
-        b = lbeta[t+1,:] + lA + lemissions[t+1,:]
-        lbeta[t,:] = np.logaddexp.reduce(b, axis=1)
+        b = lbeta[t+1,:] + lA + lemissions[t+1, :]
+        lbeta[t, :] = np.logaddexp.reduce(b, axis=1)
 
     return lalpha, lbeta
 
@@ -43,29 +43,29 @@ def viterbi(X, pi, A, obs_distr, use_distance=False):
 
     # gamma_t(j) = max_{q_1, ..., q_{t-1}} p(q_1, ..., q_{t-1}, q_t=j, u_1, ..., u_t)
     # lgamma[t,j] = log gamma_t(j)
-    lgamma = np.zeros((T,K))
-    back = np.zeros((T,K), dtype=int)  # back-pointers
+    lgamma = np.zeros((T, K))
+    back = np.zeros((T, K), dtype=int)  # back-pointers
     lA = np.log(A)
-    lemissions = np.zeros((T,K))
+    lemissions = np.zeros((T, K))
     for k in range(K):
         if use_distance:
-            lemissions[:,k] = - obs_distr[k].distances(X)
+            lemissions[:, k] = - obs_distr[k].distances(X)
         else:
-            lemissions[:,k] = obs_distr[k].log_pdf(X)
+            lemissions[:, k] = obs_distr[k].log_pdf(X)
 
-    lgamma[0,:] = np.log(pi) + lemissions[0,:]
-    for t in range(1,T):
-        a = lgamma[t-1:t,:].T + lA + lemissions[t,:]
-        lgamma[t,:] = np.max(a, axis=0)
-        ss = np.sum(lgamma[t,:] == a, axis=0)
+    lgamma[0,:] = np.log(pi) + lemissions[0, :]
+    for t in range(1, T):
+        a = lgamma[t-1:t, :].T + lA + lemissions[t, :]
+        lgamma[t, :] = np.max(a, axis=0)
+        ss = np.sum(lgamma[t, :] == a, axis=0)
         if np.max(ss) > 1:
             print(ss, t)
-        back[t,:] = np.argmax(a, axis=0)
+        back[t, :] = np.argmax(a, axis=0)
 
     # recover MAP from back-pointers
-    seq = [int(np.argmax(lgamma[T-1,:]))]
+    seq = [int(np.argmax(lgamma[T-1, :]))]
     for t in reversed(range(1, T)):
-        seq.append(back[t,seq[-1]])
+        seq.append(back[t, seq[-1]])
 
     return np.array(list(reversed(seq)), dtype=int), lgamma
 
@@ -73,7 +73,7 @@ def viterbi(X, pi, A, obs_distr, use_distance=False):
 def smoothing(lalpha, lbeta):
     '''Computes all the p(q_t | u_1, ..., u_T)'''
     log_p = lalpha + lbeta
-    return log_p - np.logaddexp.reduce(log_p, axis=1)[:,nax]
+    return log_p - np.logaddexp.reduce(log_p, axis=1)[:, nax]
 
 
 def mpm_sequence(X, pi, A, obs_distr):
@@ -87,7 +87,7 @@ def pairwise_smoothing(X, lalpha, lbeta, A, obs_distr):
     '''returns log_p[t,i,j] = log p(q_t = i, q_{t+1} = j|u)'''
     T, K = lalpha.shape
     lA = np.log(A)
-    lemissions = np.zeros((T,K))
+    lemissions = np.zeros((T, K))
     for k in range(K):
         lemissions[:,k] = obs_distr[k].log_pdf(X)
 
