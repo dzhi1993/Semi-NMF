@@ -25,7 +25,7 @@ from sklearn.model_selection import train_test_split
 #               [4, 7], [3, 5], [3, 6]])
 # print(X, X.shape)
 
-mat = spio.loadmat('groupData_sc1.mat')
+mat = spio.loadmat('groupData_sc2.mat')
 groupData = mat['X_C']
 
 clustering = SpectralClustering(n_clusters=10,
@@ -37,7 +37,7 @@ print(clustering.labels_.shape, clustering.labels_)
 # Make the clustering result bestG type
 clustering_result = np.zeros((25275, 10))
 for i in range(clustering_result.shape[0]):
-    clustering_result[i, clustering.labels_[i]] = 0.4
+    clustering_result[i, clustering.labels_[i]] = 0.6
 
 spio.savemat('spec.mat', {"bestG": clustering_result})
 
