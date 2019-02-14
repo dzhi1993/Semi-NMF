@@ -25,12 +25,37 @@ from sklearn.model_selection import train_test_split
 #               [4, 7], [3, 5], [3, 6]])
 # print(X, X.shape)
 
-mat = spio.loadmat('groupData_sc2.mat')
+mat = spio.loadmat('../groupData_sc1.mat')
 groupData = mat['X_C']
 
 clustering = SpectralClustering(n_clusters=10,
                                 eigen_solver='arpack',
-                                affinity="nearest_neighbors").fit(groupData.transpose())
+                                n_neighbors=5,
+                                affinity="nearest_neighbors",
+                                n_jobs=-1).fit(groupData.transpose())
+print(clustering.labels_.shape, clustering.labels_)
+# spio.savemat('clusters.mat', {"Y": clustering.labels_})
+
+# Make the clustering result bestG type
+clustering_result = np.zeros((25275, 10))
+for i in range(clustering_result.shape[0]):
+    clustering_result[i, clustering.labels_[i]] = 0.4
+
+spio.savemat('spec_sc1_bestG.mat', {"bestG": clustering_result})
+
+# print(clustering, clustering.affinity_matrix_.shape, clustering.affinity_matrix_)
+# print(X[:, 0], y.shape)
+print(clustering)
+
+# ---------------------------- SC 2 ----------------------------- #
+mat = spio.loadmat('../groupData_sc2.mat')
+groupData = mat['X_C']
+
+clustering = SpectralClustering(n_clusters=10,
+                                eigen_solver='arpack',
+                                n_neighbors=5,
+                                affinity="nearest_neighbors",
+                                n_jobs=-1).fit(groupData.transpose())
 print(clustering.labels_.shape, clustering.labels_)
 # spio.savemat('clusters.mat', {"Y": clustering.labels_})
 
@@ -39,11 +64,7 @@ clustering_result = np.zeros((25275, 10))
 for i in range(clustering_result.shape[0]):
     clustering_result[i, clustering.labels_[i]] = 0.6
 
-spio.savemat('spec.mat', {"bestG": clustering_result})
-
-# print(clustering, clustering.affinity_matrix_.shape, clustering.affinity_matrix_)
-# print(X[:, 0], y.shape)
-# print(clustering.shape)
+spio.savemat('spec_sc2_bestG.mat', {"bestG": clustering_result})
 
 # Plotting the clustering result
 # colors = ['red', 'blue']
