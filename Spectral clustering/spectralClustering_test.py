@@ -30,7 +30,7 @@ groupData = mat['X_C']
 
 clustering = SpectralClustering(n_clusters=10,
                                 eigen_solver='arpack',
-                                n_neighbors=5,
+                                n_neighbors=10,
                                 affinity="nearest_neighbors",
                                 n_jobs=-1).fit(groupData.transpose())
 print(clustering.labels_.shape, clustering.labels_)
@@ -42,6 +42,7 @@ for i in range(clustering_result.shape[0]):
     clustering_result[i, clustering.labels_[i]] = 0.4
 
 spio.savemat('spec_sc1_bestG.mat', {"bestG": clustering_result})
+spio.savemat('spec_sc1_bestG_affinity.mat', {"affinityMatrix": clustering.affinity_matrix_})
 
 # print(clustering, clustering.affinity_matrix_.shape, clustering.affinity_matrix_)
 # print(X[:, 0], y.shape)
@@ -53,7 +54,7 @@ groupData = mat['X_C']
 
 clustering = SpectralClustering(n_clusters=10,
                                 eigen_solver='arpack',
-                                n_neighbors=5,
+                                n_neighbors=10,
                                 affinity="nearest_neighbors",
                                 n_jobs=-1).fit(groupData.transpose())
 print(clustering.labels_.shape, clustering.labels_)
@@ -65,6 +66,7 @@ for i in range(clustering_result.shape[0]):
     clustering_result[i, clustering.labels_[i]] = 0.6
 
 spio.savemat('spec_sc2_bestG.mat', {"bestG": clustering_result})
+spio.savemat('spec_sc2_bestG_affinity.mat', {"affinityMatrix": clustering.affinity_matrix_})
 
 # Plotting the clustering result
 # colors = ['red', 'blue']
